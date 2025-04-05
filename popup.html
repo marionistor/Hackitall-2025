@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Voice Controlled Web Extension</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1>Voice Control</h1>
-    <button id="startVoice">Start Voice Recognition</button>
-    <script src="popup.js"></script>
-  </body>
+<head>
+  <title>Page Analysis</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 10px; width: 200px; }
+    .found { color: green; }
+    .not-found { color: red; }
+  </style>
+</head>
+<body>
+  <h3>Page Elements</h3>
+  <p>Register: <span id="register">Checking...</span></p>
+  <p>Login: <span id="login">Checking...</span></p>
+  <p>Add to Cart: <span id="addToCart">Checking...</span></p>
+  <p>Pay: <span id="pay">Checking...</span></p>
+  <script src="popup.js"></script>
+</body>
 </html>

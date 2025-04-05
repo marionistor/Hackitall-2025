@@ -1,30 +1,29 @@
 {
-    "manifest_version": 3,
-    "name": "Voice Controlled Web Extension",
-    "description": "Control web pages using voice commands",
-    "version": "1.0",
-    "permissions": [
-      "activeTab"
-    ],
-    "background": {
-      "service_worker": "background.js"
-    },
-    "action": {
-      "default_popup": "popup.html"
-    },
-    "commands": {
-      "start_voice": {
-        "suggested_key": {
-          "default": "Ctrl+Shift+S"
-        },
-        "description": "Start Voice Command Recognition"
-      }
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content.js"]
-      }
-    ]
-  }
-  
+  "manifest_version": 2,
+  "name": "Voice Controlled Web Extension",
+  "description": "Control web pages using voice commands",
+  "version": "1.0",
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "commands": {
+    "start_voice": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S"
+      },
+      "description": "Start Voice Command Recognition"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
