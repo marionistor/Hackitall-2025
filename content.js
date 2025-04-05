@@ -1,12 +1,10 @@
 // content.js
 (function () {
-  // Function to check if an element matches a keyword
   function matchesKeyword(element, keywords) {
     const text = (element.textContent || "").toLowerCase().trim();
     const id = (element.id || "").toLowerCase();
     const className = (element.className || "").toLowerCase();
-    const value = (element.value || "").toLowerCase(); // For input buttons
-
+    const value = (element.value || "").toLowerCase();
     return keywords.some(
       (keyword) =>
         text.includes(keyword) ||
@@ -16,7 +14,6 @@
     );
   }
 
-  // Define keywords for each action
   const actions = {
     register: ["register", "sign up", "create account", "join"],
     login: ["login", "log in", "sign in", "signin"],
@@ -24,12 +21,10 @@
     pay: ["pay", "checkout", "buy now", "purchase", "payment"],
   };
 
-  // Search for buttons, links, and inputs
   const elements = document.querySelectorAll(
     "button, a, input[type='button'], input[type='submit']"
   );
 
-  // Object to store results
   const results = {
     register: false,
     login: false,
@@ -37,7 +32,6 @@
     pay: false,
   };
 
-  // Analyze each element
   elements.forEach((element) => {
     for (const [action, keywords] of Object.entries(actions)) {
       if (matchesKeyword(element, keywords)) {
@@ -46,36 +40,23 @@
     }
   });
 
-  // Send results to background script or popup
+  // Debugging: Log results to console
+  console.log("Content script results:", results);
+
+  // Send results to background script
   browser.runtime.sendMessage({
     action: "pageAnalysis",
     data: results,
   });
 
-  // Log to console for debugging
-  console.log("Page Analysis:", results);
+  // Listen for popup requests
+  browser.runtime.onMessage.addListener((message) => {
+    if (message.action === "analyzePage") {
+      console.log("Popup requested analysis");
+      browser.runtime.sendMessage({
+        action: "pageAnalysis",
+        data: results,
+      });
+    }
+  });
 })();
-
-browser.runtime.onMessage.addListener((message) => {
-  if (message.action === "analyzePage") {
-    // Re-run the analysis and send results
-    const elements = document.querySelectorAll("button, a, input[type='button'], input[type='submit']");
-    const results = {
-      register: false,
-      login: false,
-      addToCart: false,
-      pay: false,
-    };
-    elements.forEach((element) => {
-      for (const [action, keywords] of Object.entries(actions)) {
-        if (matchesKeyword(element, keywords)) {
-          results[action] = true;
-        }
-      }
-    });
-    browser.runtime.sendMessage({
-      action: "pageAnalysis",
-      data: results,
-    });
-  }
-});

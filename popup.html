@@ -2,18 +2,70 @@
 <html>
 <head>
   <title>Page Analysis</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    body { font-family: Arial, sans-serif; padding: 10px; width: 200px; }
-    .found { color: green; }
-    .not-found { color: red; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      width: 250px;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+    h3 {
+      margin: 0 0 10px;
+      color: #333;
+      text-align: center;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+      padding: 5px;
+      border-radius: 4px;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .item i {
+      margin-right: 8px;
+      font-size: 16px;
+    }
+    .found i {
+      color: #28a745; /* Green for found */
+    }
+    .not-found i {
+      color: #dc3545; /* Red for not found */
+    }
+    .label {
+      flex-grow: 1;
+    }
+    .status {
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <h3>Page Elements</h3>
-  <p>Register: <span id="register">Checking...</span></p>
-  <p>Login: <span id="login">Checking...</span></p>
-  <p>Add to Cart: <span id="addToCart">Checking...</span></p>
-  <p>Pay: <span id="pay">Checking...</span></p>
+  <div class="item">
+    <i id="register-icon" class="fas fa-user-plus"></i>
+    <span class="label">Register</span>
+    <span id="register" class="status">Checking...</span>
+  </div>
+  <div class="item">
+    <i id="login-icon" class="fas fa-sign-in-alt"></i>
+    <span class="label">Login</span>
+    <span id="login" class="status">Checking...</span>
+  </div>
+  <div class="item">
+    <i id="addToCart-icon" class="fas fa-cart-plus"></i>
+    <span class="label">Add to Cart</span>
+    <span id="addToCart" class="status">Checking...</span>
+  </div>
+  <div class="item">
+    <i id="pay-icon" class="fas fa-credit-card"></i>
+    <span class="label">Pay</span>
+    <span id="pay" class="status">Checking...</span>
+  </div>
   <script src="popup.js"></script>
 </body>
 </html>

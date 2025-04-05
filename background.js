@@ -1,19 +1,17 @@
+// background.js
 console.log("Background script loaded");
 
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "pageAnalysis") {
-    const results = message.data;
-    console.log("Received page analysis:", results);
-
-    // Example: Send results to popup if open
+    console.log("Background received analysis:", message.data);
+    // Forward to popup
     browser.runtime.sendMessage({
       action: "updatePopup",
-      data: results,
+      data: message.data,
     });
   }
 });
 
-// Handle the voice command
 browser.commands.onCommand.addListener((command) => {
   if (command === "start_voice") {
     console.log("Voice command started!");
