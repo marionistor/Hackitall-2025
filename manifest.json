@@ -3,9 +3,7 @@
   "name": "Voice Controlled Web Extension",
   "description": "Control web pages using voice commands",
   "version": "1.0",
-  "permissions": [
-    "activeTab"
-  ],
+  "permissions": ["activeTab"],
   "background": {
     "scripts": ["background.js"]
   },
@@ -14,9 +12,7 @@
   },
   "commands": {
     "start_voice": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+S"
-      },
+      "suggested_key": {"default": "Ctrl+Shift+S"},
       "description": "Start Voice Command Recognition"
     }
   },
